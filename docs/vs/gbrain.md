@@ -9,9 +9,9 @@ GBrain is ahead today for a single developer who wants a personal local brain wi
 | Capability | GBrain | AgentBay |
 |---|---|---|
 | Primary user model | Single-user personal brain | Team/project memory OS for coding agents |
-| Public BrainBench result | P@5 49.1% on its corpus | Not reproduced yet; tracked in [benchmark reproduction issue #7](https://github.com/thomasjumper/agentbay/issues/7) |
+| Public BrainBench result | P@5 49.1% on its corpus | Not reproduced yet; tracked in [benchmark reproduction issue #8](https://github.com/thomasjumper/agentbay/issues/8) |
 | LOCOMO scorecards | No public AgentBay-compatible LOCOMO row found | [Published LOCOMO scorecards](../scorecards/) with full/graph-disabled/vector-only ablations |
-| Entity graph | Semantic entity-to-entity graph; reports +31.4pp P@5 over graph-disabled | Existing entity extraction plus memory-to-memory graph; semantic entity-to-entity graph is tracked in [roadmap issue #8](https://github.com/thomasjumper/agentbay/issues/8) |
+| Entity graph | Semantic entity-to-entity graph; reports +31.4pp P@5 over graph-disabled | Existing entity extraction plus memory-to-memory graph; semantic entity-to-entity graph is tracked in [roadmap issue #7](https://github.com/thomasjumper/agentbay/issues/7) |
 | Distribution | YC president audience and strong launch channel | Public repo, hosted dashboard, SDKs, MCP recipes, and transparent scorecards |
 | Teams + role-based permissions | Not the core product shape | [Teams surface](https://aiagentsbay.com/teams) |
 | Scope hierarchy | Personal brain orientation | Project / team / public memory scope |
