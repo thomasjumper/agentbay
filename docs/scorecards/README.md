@@ -14,7 +14,7 @@ Every scorecard includes three retrieval variants. Full hybrid uses AgentBay's c
 
 The metrics are standard retrieval diagnostics: precision at 1/5/10, recall at 5/10, MRR, top-1 stability, and p50/p95 recall latency. Scorecards require `voyage-3-lite` embeddings and are expected to run against an isolated transient Postgres database. Rows are intentionally published even when uncomfortable, because that is how regression targets stay honest.
 
-Competitor rows stay empty until reproduced on the same corpus, hardware, and methodology. In particular, GBrain comparison work is tracked in issue [#190](https://github.com/thomasjumper/agentbay-app/issues/190); no GBrain benchmark number is copied into these scorecards unless AgentBay reproduces it under matching conditions.
+Competitor rows stay empty until reproduced on the same corpus, hardware, and methodology. No GBrain benchmark number is copied into these scorecards unless AgentBay reproduces it under matching conditions.
 
 ## Headline Table
 
