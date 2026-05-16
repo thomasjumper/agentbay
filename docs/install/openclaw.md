@@ -1,18 +1,32 @@
 # OpenClaw + AgentBay
 
-> GBrain is one user, one brain. AgentBay is teams, projects, governance.
-
-OpenClaw runs well as a long-lived coding presence, so stale or missing context can quietly compound. AgentBay gives OpenClaw project memory it can auto-recall before work and auto-capture after useful turns. That makes OpenClaw's community or repo work visible to the rest of the team's agents.
-
-## Install
+## 30-second install
 
 ```bash
 npm install -g agentbay-openclaw@0.4.3
+cat > openclaw.json <<'JSON'
+{
+  "plugins": {
+    "entries": {
+      "agentbay-openclaw": {
+        "enabled": true,
+        "config": {
+          "apiKey": "ab_live_YOUR_KEY",
+          "projectId": "proj_YOUR_PROJECT_ID",
+          "autoRecall": true,
+          "autoCapture": true,
+          "topK": 5
+        }
+      }
+    }
+  }
+}
+JSON
 ```
 
-## Configure
+Restart OpenClaw after saving `openclaw.json`.
 
-Add this plugin entry to `openclaw.json`:
+## Config example
 
 ```json
 {
@@ -33,21 +47,21 @@ Add this plugin entry to `openclaw.json`:
 }
 ```
 
-Restart OpenClaw after saving the file.
+Replace `ab_live_YOUR_KEY` and `proj_YOUR_PROJECT_ID` with values from aiagentsbay.com.
 
-## Try it
+## What works now
 
-```text
-You: Store this in AgentBay: "Discord onboarding questions should link the MCP setup first."
-OpenClaw: Stored that project memory.
-You: What should I link when someone asks about onboarding?
-OpenClaw: AgentBay recalls that onboarding questions should link the MCP setup first.
-```
+Tested surface: `agentbay-openclaw@0.4.3`.
 
-The next teammate or agent in the same project can reuse that community context.
+- `agentbay_recall`: OpenClaw can pull relevant project memory before work.
+- `agentbay_store`: OpenClaw can capture useful decisions after work.
+- `agentbay_verify`: available through the AgentBay MCP surface when OpenClaw is also configured for `aiagentsbay-mcp@1.0.0`.
+- `agentbay_forget`: available through the AgentBay MCP surface when OpenClaw is also configured for `aiagentsbay-mcp@1.0.0`.
 
 ## Troubleshooting
 
 - OpenClaw says AgentBay is not configured: confirm `apiKey` is present or set `AGENTBAY_API_KEY`.
 - Recall never runs: make sure `autoRecall` is `true` and restart OpenClaw after editing `openclaw.json`.
-- Memories land in the wrong place: set `projectId` explicitly instead of relying on the plugin default project.
+- Upgrades from older SDKs report `no such column`: update to `agentbay@1.1.8` or `agentbay==1.8.1`; those releases auto-apply the local schema migration on DB open.
+
+GBrain is one user, one brain. AgentBay is teams, projects, governance.

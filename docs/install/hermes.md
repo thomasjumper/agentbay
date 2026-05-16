@@ -1,18 +1,25 @@
 # Hermes + AgentBay
 
-> GBrain is one user, one brain. AgentBay is teams, projects, governance.
+> Verification status: package and MCP launch verified locally. Live Hermes account verification is still pending human access.
 
-Hermes is useful when it can move quickly between tasks, but that speed loses value if each session starts cold. AgentBay gives Hermes a persistent memory backend through MCP so it can store decisions and recall them later. Shared AgentBay projects let another agent or teammate continue with the same context.
-
-## Install
+## 30-second install
 
 ```bash
 npm install -g aiagentsbay-mcp@1.0.0
+cat >> cli-config.yaml <<'YAML'
+
+mcp_servers:
+  agentbay:
+    command: npx
+    args: ["-y", "aiagentsbay-mcp@1.0.0"]
+    env:
+      AGENTBAY_API_KEY: "ab_live_YOUR_KEY"
+YAML
 ```
 
-## Configure
+Restart Hermes after saving `cli-config.yaml`.
 
-Add this `agentbay` server entry to Hermes `cli-config.yaml`:
+## Config example
 
 ```yaml
 mcp_servers:
@@ -23,21 +30,21 @@ mcp_servers:
       AGENTBAY_API_KEY: "ab_live_YOUR_KEY"
 ```
 
-Restart Hermes after saving the file so it can discover the new MCP tools.
+Replace `ab_live_YOUR_KEY` with a live key from aiagentsbay.com.
 
-## Try it
+## What works now
 
-```text
-You: Store in AgentBay: "The Hermes release checklist requires signed artifacts."
-Hermes: Stored that memory.
-You: What does the release checklist require?
-Hermes: AgentBay recalls that Hermes releases require signed artifacts.
-```
+Tested surface: `aiagentsbay-mcp@1.0.0`, frozen for the 1.x line. Live Hermes host verification is pending.
 
-Use the same AgentBay project from another workstation and the release memory follows the team.
+- `agentbay_recall`: available through the MCP server.
+- `agentbay_store`: available through the MCP server.
+- `agentbay_verify`: available through the MCP server.
+- `agentbay_forget`: available through the MCP server.
 
 ## Troubleshooting
 
 - Hermes does not show AgentBay tools: restart Hermes after editing the MCP config and confirm the server name is `agentbay`.
 - The server exits immediately: run `npx -y aiagentsbay-mcp@1.0.0` in a terminal to confirm Node can launch the package.
-- Authentication fails: set `AGENTBAY_API_KEY` to a live key from aiagentsbay.com; do not leave the placeholder in place.
+- Upgrades from older SDKs report `no such column`: update to `agentbay@1.1.8` or `agentbay==1.8.1`; those releases auto-apply the local schema migration on DB open.
+
+GBrain is one user, one brain. AgentBay is teams, projects, governance.

@@ -1,18 +1,24 @@
 # OpenAI Codex CLI + AgentBay
 
-> GBrain is one user, one brain. AgentBay is teams, projects, governance.
-
-Codex CLI often works across multiple short terminal sessions, which makes memory easy to lose. AgentBay gives Codex a persistent project memory it can store into and recall from later. When the same project is shared with a team, another agent can pick up the decision trail without replaying the whole conversation.
-
-## Install
+## 30-second install
 
 ```bash
 npm install -g aiagentsbay-mcp@1.0.0
+mkdir -p ~/.codex
+cat >> ~/.codex/config.toml <<'TOML'
+
+[mcp_servers.agentbay]
+command = "npx"
+args = ["-y", "aiagentsbay-mcp@1.0.0"]
+
+[mcp_servers.agentbay.env]
+AGENTBAY_API_KEY = "ab_live_YOUR_KEY"
+TOML
 ```
 
-## Configure
+Restart Codex CLI after saving the config.
 
-Add this to `~/.codex/config.toml`:
+## Config example
 
 ```toml
 [mcp_servers.agentbay]
@@ -23,21 +29,21 @@ args = ["-y", "aiagentsbay-mcp@1.0.0"]
 AGENTBAY_API_KEY = "ab_live_YOUR_KEY"
 ```
 
-Restart Codex CLI after saving the file.
+Replace `ab_live_YOUR_KEY` with a live key from aiagentsbay.com.
 
-## Try it
+## What works now
 
-```text
-You: Store in AgentBay: "The billing tests need STRIPE_WEBHOOK_SECRET set."
-Codex CLI: Stored that project memory.
-You: Recall what billing tests need before I run them.
-Codex CLI: AgentBay recalls that billing tests need STRIPE_WEBHOOK_SECRET set.
-```
+Tested surface: `aiagentsbay-mcp@1.0.0`, frozen for the 1.x line.
 
-Open the same project on another machine and Codex can recall the same memory.
+- `agentbay_recall`: recall project memory before a coding task.
+- `agentbay_store`: store decisions, patterns, pitfalls, and handoffs.
+- `agentbay_verify`: refresh confidence on known-good memories.
+- `agentbay_forget`: archive stale or incorrect memories.
 
 ## Troubleshooting
 
-- The server is not listed: check that the table is under `[mcp_servers.agentbay]`, not a JSON `mcpServers` block.
+- The server is not listed: use TOML under `[mcp_servers.agentbay]`, not a JSON `mcpServers` block.
 - Codex cannot launch the server: run `npx -y aiagentsbay-mcp@1.0.0` once to confirm Node can fetch the package.
-- AgentBay returns auth errors: use a live API key in `AGENTBAY_API_KEY`; setup tokens are only for first-run exchange.
+- Upgrades from older SDKs report `no such column`: update to `agentbay@1.1.8` or `agentbay==1.8.1`; those releases auto-apply the local schema migration on DB open.
+
+GBrain is one user, one brain. AgentBay is teams, projects, governance.
