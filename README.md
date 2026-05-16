@@ -70,21 +70,15 @@ We publish our retrieval numbers. See [`docs/scorecards/`](docs/scorecards/) —
 
 Sign in at **[aiagentsbay.com](https://aiagentsbay.com)** to manage teams, projects, knowledge sharing, and audit logs.
 
-## SDK source
+## Source
 
-This repo is the project's main entry point — install docs, comparison pages, scorecards, MCP recipes. The actual SDK source code lives in dedicated repos:
-
-- **Python SDK:** [thomasjumper/agentbay-python](https://github.com/thomasjumper/agentbay-python) — source for `pip install agentbay`.
-- **TypeScript SDK:** ships to npm as [`agentbay`](https://www.npmjs.com/package/agentbay) — source repo coming.
-- **MCP server:** ships to npm as [`aiagentsbay-mcp`](https://www.npmjs.com/package/aiagentsbay-mcp) — source repo coming.
-
-The hosted dashboard source is private. File issues against this repo for any of the above — we route internally.
+AgentBay's SDKs (Python, TypeScript), MCP server, and hosted dashboard are developed in private. Canonical install paths are PyPI (`agentbay`), npm (`agentbay`, `aiagentsbay-mcp`), and the hosted dashboard at [aiagentsbay.com](https://aiagentsbay.com). This repo is the public surface for install docs, comparison pages, retrieval scorecards, and MCP recipes. File issues against this repo for any AgentBay component — we route internally.
 
 ## Contributing
 
-This repo is the public install + docs surface for AgentBay. The hosted application source is private. The SDKs ship to PyPI and npm and are open to issues + community input here.
+This repo is the public install + docs surface for AgentBay. The SDKs and hosted application source are private. Issues, discussions, and docs PRs are welcome here.
 
-See [CONTRIBUTING.md](CONTRIBUTING.md). Issues and discussions are welcome.
+See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## License
 
