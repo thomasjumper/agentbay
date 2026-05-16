@@ -1,8 +1,8 @@
 # AgentBay
 
-**Memory OS for coding agents — persistent memory, collaboration, and governance for coding agents.**
+**Memory OS for coding agents — persistent memory for teams, projects, and governance.**
 
-GBrain is one user, one brain. AgentBay is teams, projects, governance.
+> GBrain is one user, one brain. AgentBay is teams, projects, governance.
 
 [![PyPI](https://img.shields.io/pypi/v/agentbay.svg)](https://pypi.org/project/agentbay/) [![npm](https://img.shields.io/npm/v/agentbay.svg)](https://www.npmjs.com/package/agentbay) [![MCP](https://img.shields.io/npm/v/aiagentsbay-mcp.svg?label=mcp)](https://www.npmjs.com/package/aiagentsbay-mcp) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
@@ -28,10 +28,13 @@ npx aiagentsbay-mcp
 ```python
 from agentbay import AgentBay
 
-brain = AgentBay()                                    # local, zero config
-brain.store("Our deploy pipeline uses pgvector(512)")
-brain.recall("how do we store embeddings?")
-brain.login()                                         # syncs to cloud + teams
+brain = AgentBay(project_id="proj_checkout")
+brain = brain.login()
+brain.store("Deploys require pgvector(512) migrations first",
+            title="deploy memory")
+brain.recall("what should we check before deploy?")
+
+# every teammate's agent in this project now recalls this
 ```
 
 Same brain, every agent. When Cursor stores it, Claude Code recalls it.
@@ -47,7 +50,12 @@ Same brain, every agent. When Cursor stores it, Claude Code recalls it.
 | Knowledge tiers with TTL/decay | ✓ | — | — | — | — |
 | Approval modes + audit logs | ✓ | scoped ops | — | — | — |
 | Multi-agent MCP-native | ✓ | ✓ | ✓ | — | ✓ |
+| Single-dev retrieval lift (BrainBench-class) | in progress (see scorecards) | ✓ | — | — | — |
 | **Published retrieval scorecards** | **✓ (LOCOMO + native)** | ✓ (BrainBench) | — | — | — |
+
+### Where we lose
+
+GBrain currently leads on single-dev retrieval evals; AgentBay does not yet claim a BrainBench-class win. AgentBay publishes its own [scorecards](docs/scorecards/) anyway, including ablation rows where graph or hybrid retrieval loses to vector-only. That is the transparency lever: the comparison stays checkable, even when the numbers are uncomfortable.
 
 We publish our retrieval numbers. See [`docs/scorecards/`](docs/scorecards/) — reproducible LOCOMO and AgentBay-native rich-prose corpora, three-row ablations (Full hybrid / Graph disabled / Vector only) on every release.
 
@@ -79,6 +87,8 @@ AgentBay's SDKs (Python, TypeScript), MCP server, and hosted dashboard are devel
 This repo is the public install + docs surface for AgentBay. The SDKs and hosted application source are private. Issues, discussions, and docs PRs are welcome here.
 
 See [CONTRIBUTING.md](CONTRIBUTING.md).
+
+Star this repo to follow the public install surface, and sign in at [aiagentsbay.com](https://aiagentsbay.com) when you are ready to sync agent memory with a team.
 
 ## License
 
