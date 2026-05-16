@@ -1,51 +1,35 @@
 # AgentBay vs GBrain
 
-> GBrain is one user, one brain. AgentBay is teams, projects, governance.
+## Short version
 
-## TL;DR
+GBrain is ahead today for a single developer who wants a personal local brain with strong public retrieval claims. AgentBay is built for a different wedge: teams, projects, governance, hosted cloud, scope hierarchy, and MCP-native coding-agent memory that multiple agents can share.
 
-GBrain is genuinely strong for a single developer who wants a local brain, skillpack workflows, and strong recent retrieval evals around a personal knowledge base. AgentBay is different because it is built for teams sharing memory across projects and agents, with a hosted dashboard for role-based permissions, project/team scope, approval modes, and audit-grade governance. Pick GBrain if your main problem is making one person's agent remember better; pick AgentBay if multiple people, machines, or coding agents need shared project memory they can govern.
+## Comparison
 
-## At a glance
-
-| Dimension | GBrain | AgentBay |
+| Capability | GBrain | AgentBay |
 |---|---|---|
-| Primary user model | One person's brain and workspace | Teams, projects, and multiple coding agents |
-| Single-dev retrieval lift | Wins today on BrainBench-class evals | in progress (see scorecards) |
-| Setup model | Local repo, Bun install, CLI initialization | `pip install agentbay`, `npm install agentbay`, or `npx aiagentsbay-mcp@1.0.0` |
-| Knowledge shape | Markdown brain, skills, typed links, timeline | Project-scoped memories, knowledge tiers, tags, graph links, hosted project surfaces |
-| Agent workflow | Skillpack-driven personal agent workflows | MCP-native memory for Claude Code, Codex CLI, Cursor, Hermes, OpenClaw, and teammates |
-| Team permissions | Not the core product shape | Role-based team/project permissions in the hosted dashboard |
-| Governance | Local workflow checks and contributor gates | Project/team scope, approval modes, audit logs, and hosted governance controls |
-| Published eval posture | BrainBench and related GBrain eval material | Public LOCOMO and AgentBay-native scorecards with ablations |
+| Primary user model | Single-user personal brain | Team/project memory OS for coding agents |
+| Public BrainBench result | P@5 49.1% on its corpus | Not reproduced yet; tracked in [benchmark reproduction issue #7](https://github.com/thomasjumper/agentbay/issues/7) |
+| LOCOMO scorecards | No public AgentBay-compatible LOCOMO row found | [Published LOCOMO scorecards](../scorecards/) with full/graph-disabled/vector-only ablations |
+| Entity graph | Semantic entity-to-entity graph; reports +31.4pp P@5 over graph-disabled | Existing entity extraction plus memory-to-memory graph; semantic entity-to-entity graph is tracked in [roadmap issue #8](https://github.com/thomasjumper/agentbay/issues/8) |
+| Distribution | YC president audience and strong launch channel | Public repo, hosted dashboard, SDKs, MCP recipes, and transparent scorecards |
+| Teams + role-based permissions | Not the core product shape | [Teams surface](https://aiagentsbay.com/teams) |
+| Scope hierarchy | Personal brain orientation | Project / team / public memory scope |
+| Knowledge decay | Personal knowledge workflow | Knowledge tiers with TTL/decay |
+| Hosted governance | Self-host or local workflow | Hosted dashboard for teams, projects, approvals, and audit logs |
+| MCP posture | MCP support | MCP-native install paths for Claude Code, Codex CLI, Cursor, OpenClaw, and Hermes |
 
-## Where GBrain is strong
+## Honest concessions
 
-- Strong single-developer retrieval story, including a recent BrainBench lead that AgentBay should treat as real.
-- Local-first personal brain workflow with a CLI and a markdown-centered mental model.
-- Skillpack system that gives agents concrete operating procedures, not just memory retrieval.
-- Rich personal ingestion and entity-linking story for one operator's notes, media, and workflows.
+- GBrain's BrainBench P@5 49.1% is a real public claim. AgentBay should not copy it into AgentBay scorecards until we reproduce both systems on the same corpus and hardware.
+- GBrain's semantic entity-to-entity graph is ahead of AgentBay's current public layer. AgentBay has entity extraction and graph retrieval, but the richer typed entity edges are still roadmap work.
+- GBrain's launch channel is unusually strong. AgentBay should win on product surface, governance, and transparent evaluation rather than pretending distribution is already equal.
 
-## Where AgentBay is different
+## Where AgentBay is stronger
 
-- Teams/projects/governance are first-class: hosted projects, team scope, role-based permissions, approval modes, and audit logs.
-- AgentBay plugs into existing coding agents through MCP instead of asking a team to standardize on one personal brain workflow.
-- Project-scoped memory lets Cursor, Claude Code, Codex CLI, Hermes, and OpenClaw share the same context.
-- Public scorecards include ablation rows, so users can see where hybrid or graph retrieval helps and where it does not.
-- The hosted upgrade path at aiagentsbay.com gives teams a managed surface for shared memory instead of only local brain files.
+- AgentBay is built around shared engineering memory: projects, teams, scoped visibility, and audit-grade governance.
+- AgentBay publishes scorecards on multiple corpora, including LOCOMO, and includes ablations even when numbers are uncomfortable.
+- AgentBay lets multiple coding agents share the same project memory through MCP instead of centering the workflow on one personal brain.
+- AgentBay has a hosted upgrade path for teams that need permissions and operational control.
 
-## Transparency
-
-AgentBay publishes its retrieval [`docs/scorecards/`](../scorecards/) including ablation rows where graph or hybrid retrieval lose to vector-only. Competitor cells in our scorecard tables stay empty until AgentBay reproduces them on identical corpus and hardware. That means GBrain's BrainBench lead is acknowledged here, but not pasted into AgentBay tables as if we had reproduced it.
-
-## When to pick GBrain
-
-- You are one developer optimizing a personal brain and want the strongest current single-user retrieval story.
-- You want a markdown-centered local brain with skills and typed links around your own notes.
-- You are comfortable with GBrain's repo-based install and local workflow model.
-
-## Get started with AgentBay
-
-Install for an MCP-aware coding agent: `npx aiagentsbay-mcp@1.0.0`
-Start with the Claude Code recipe: [Claude Code + AgentBay](../install/claude-code.md)
-Create the hosted team/project surface at [aiagentsbay.com](https://aiagentsbay.com).
+GBrain is one user, one brain. AgentBay is teams, projects, governance.
