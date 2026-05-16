@@ -1,18 +1,28 @@
 # Claude Code + AgentBay
 
-> GBrain is one user, one brain. AgentBay is teams, projects, governance.
-
-Claude Code is strongest when it can carry context across sessions without making every repo depend on a long prompt. AgentBay gives Claude Code persistent project memory, then lets teammates and other agents recall the same decisions later. That makes handoffs feel like shared engineering memory instead of a transcript hunt.
-
-## Install
+## 30-second install
 
 ```bash
 npm install -g aiagentsbay-mcp@1.0.0
+cat > .mcp.json <<'JSON'
+{
+  "mcpServers": {
+    "agentbay": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "aiagentsbay-mcp@1.0.0"],
+      "env": {
+        "AGENTBAY_API_KEY": "ab_live_YOUR_KEY"
+      }
+    }
+  }
+}
+JSON
 ```
 
-## Configure
+Restart Claude Code from the project directory after saving `.mcp.json`.
 
-Add this to `.mcp.json` in the project where you run Claude Code:
+## Config example
 
 ```json
 {
@@ -29,21 +39,21 @@ Add this to `.mcp.json` in the project where you run Claude Code:
 }
 ```
 
-Restart Claude Code after saving the file.
+Replace `ab_live_YOUR_KEY` with a live key from aiagentsbay.com.
 
-## Try it
+## What works now
 
-```text
-You: Store this in AgentBay: "Checkout deploys must run pgvector migrations first."
-Claude Code: Stored that deployment memory.
-You: What should we check before the next checkout deploy?
-Claude Code: AgentBay says checkout deploys must run pgvector migrations first.
-```
+Tested surface: `aiagentsbay-mcp@1.0.0`, frozen for the 1.x line.
 
-Open the same AgentBay project from another teammate's agent and recall works there too.
+- `agentbay_recall`: recall project memory from Claude Code.
+- `agentbay_store`: store durable project knowledge.
+- `agentbay_verify`: mark a memory as still accurate.
+- `agentbay_forget`: archive stale or incorrect memory.
 
 ## Troubleshooting
 
-- `agentbay` does not appear in Claude Code: restart Claude Code from the project directory containing `.mcp.json`.
+- Claude Code does not show AgentBay tools: restart Claude Code from the directory that contains `.mcp.json`.
 - `npx` is not found: install Node.js, then run `node --version` and `npm --version` from the same shell that launches Claude Code.
-- Authentication fails: replace the placeholder with an API key from aiagentsbay.com and make sure it starts with `ab_live_`.
+- Upgrades from older SDKs report `no such column`: update to `agentbay@1.1.8` or `agentbay==1.8.1`; those releases auto-apply the local schema migration on DB open.
+
+GBrain is one user, one brain. AgentBay is teams, projects, governance.

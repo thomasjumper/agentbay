@@ -1,18 +1,28 @@
 # Cursor + AgentBay
 
-> GBrain is one user, one brain. AgentBay is teams, projects, governance.
-
-Cursor already knows the files in front of it; AgentBay helps it remember what happened before this chat and outside this machine. Store project decisions once and Cursor can recall them in later sessions. The same memory can also be available to Claude Code, Codex CLI, or a teammate working in the same AgentBay project.
-
-## Install
+## 30-second install
 
 ```bash
 npm install -g aiagentsbay-mcp@1.0.0
+mkdir -p .cursor
+cat > .cursor/mcp.json <<'JSON'
+{
+  "mcpServers": {
+    "agentbay": {
+      "command": "npx",
+      "args": ["-y", "aiagentsbay-mcp@1.0.0"],
+      "env": {
+        "AGENTBAY_API_KEY": "ab_live_YOUR_KEY"
+      }
+    }
+  }
+}
+JSON
 ```
 
-## Configure
+Reload Cursor's MCP tools or restart the editor.
 
-Add this to `.cursor/mcp.json` in the project, or to Cursor's global MCP config if you want it available across workspaces:
+## Config example
 
 ```json
 {
@@ -28,21 +38,21 @@ Add this to `.cursor/mcp.json` in the project, or to Cursor's global MCP config 
 }
 ```
 
-Restart Cursor or reload MCP tools after saving the file.
+Replace `ab_live_YOUR_KEY` with a live key from aiagentsbay.com.
 
-## Try it
+## What works now
 
-```text
-You: Store in AgentBay: "Use the semantic tier for durable architecture decisions."
-Cursor: Stored that memory.
-You: Which tier should I use for architecture decisions?
-Cursor: AgentBay recalls that durable architecture decisions belong in the semantic tier.
-```
+Tested surface: `aiagentsbay-mcp@1.0.0`, frozen for the 1.x line.
 
-Open the same project in another MCP-aware agent and the decision is still available.
+- `agentbay_recall`: recall previous project decisions inside Cursor.
+- `agentbay_store`: store memory that Claude Code, Codex CLI, or teammates can reuse.
+- `agentbay_verify`: confirm memory that still matches the codebase.
+- `agentbay_forget`: archive memory that is no longer true.
 
 ## Troubleshooting
 
-- Cursor shows no AgentBay tools: reload Cursor's MCP tools or restart the editor after editing `.cursor/mcp.json`.
-- The command works in Terminal but not Cursor: use the full path from `which npx` as the `command` value.
-- Recall returns nothing: store a memory first, then make sure the same AgentBay account is configured in the other workspace.
+- Cursor shows no AgentBay tools: reload MCP tools or restart Cursor after editing `.cursor/mcp.json`.
+- The command works in Terminal but not Cursor: replace `npx` with the full path from `which npx`.
+- Upgrades from older SDKs report `no such column`: update to `agentbay@1.1.8` or `agentbay==1.8.1`; those releases auto-apply the local schema migration on DB open.
+
+GBrain is one user, one brain. AgentBay is teams, projects, governance.
