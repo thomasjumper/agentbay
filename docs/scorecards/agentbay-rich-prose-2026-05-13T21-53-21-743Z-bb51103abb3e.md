@@ -18,7 +18,7 @@ Hardware: darwin arm64 | Apple M2 Pro | 16GB RAM
 | System | Corpus | Hardware | P@5 | R@5 | Notes |
 |---|---|---|---:|---:|---|
 | AgentBay full hybrid | agentbay-rich-prose | darwin arm64 \| Apple M2 Pro \| 16GB RAM | 6.4% | 10.7% | Reproduced by this scorecard. |
-| GBrain | agentbay-rich-prose |  |  |  | Empty until reproduced locally on the identical corpus and hardware. |
+| GBrain | agentbay-rich-prose |  |  |  | Empty until reproduced locally on the identical corpus and hardware. Track reproduction in [#190](https://github.com/thomasjumper/agentbay-app/issues/190). |
 
 ## Notes
 
