@@ -23,10 +23,10 @@ labels: bug
 
 **Environment**
 
-- AgentBay SDK version: <!-- `pip show agentbay` / `npm list agentbay` / aiagentsbay-mcp version -->
+- StremAI package version: <!-- `pip show stremai` / `npm list @tmjumper/stremai` / aiagentsbay-mcp version -->
 - Host agent: <!-- Claude Code / Codex CLI / Cursor / OpenClaw / Hermes / other -->
 - OS:
-- Connecting to: <!-- local brain / hosted aiagentsbay.com -->
+- Connecting to: <!-- local SDK / hosted stremai.com / stdio MCP fallback -->
 
 **Additional context**
 

@@ -1,49 +1,51 @@
-# OpenAI Codex CLI + AgentBay
+# OpenAI Codex CLI + StremAI
 
-## 30-second install
+## Recommended install
 
 ```bash
-npm install -g aiagentsbay-mcp@1.0.0
-mkdir -p ~/.codex
-cat >> ~/.codex/config.toml <<'TOML'
-
-[mcp_servers.agentbay]
-command = "npx"
-args = ["-y", "aiagentsbay-mcp@1.0.0"]
-
-[mcp_servers.agentbay.env]
-AGENTBAY_API_KEY = "ab_live_YOUR_KEY"
-TOML
+codex mcp add stremai --url https://stremai.com/api/mcp
 ```
 
-Restart Codex CLI after saving the config.
+If your Codex environment needs a Bearer token instead of browser sign-in:
 
-## Config example
+```bash
+codex mcp add stremai \
+  --url https://stremai.com/api/mcp \
+  --bearer-token-env-var AGENTBAY_API_KEY
+```
+
+Environment variable names keep the original `AGENTBAY_` prefix so existing setups do not break.
+
+## Manual TOML config
 
 ```toml
-[mcp_servers.agentbay]
-command = "npx"
-args = ["-y", "aiagentsbay-mcp@1.0.0"]
+[mcp_servers.stremai]
+url = "https://stremai.com/api/mcp"
+bearer_token_env_var = "AGENTBAY_API_KEY"
+```
 
-[mcp_servers.agentbay.env]
+## Stdio fallback
+
+```toml
+[mcp_servers.stremai]
+command = "/bin/sh"
+args = ["-c", 'exec npx -y aiagentsbay-mcp@latest --api-key "$AGENTBAY_API_KEY"']
+
+[mcp_servers.stremai.env]
 AGENTBAY_API_KEY = "ab_live_YOUR_KEY"
 ```
 
-Replace `ab_live_YOUR_KEY` with a live key from aiagentsbay.com.
+The `aiagentsbay-mcp` package name is legacy compatibility; use `stremai` as the server alias in new configs.
 
 ## What works now
 
-Tested surface: `aiagentsbay-mcp@1.0.0`, frozen for the 1.x line.
-
-- `agentbay_recall`: recall project memory before a coding task.
-- `agentbay_store`: store decisions, patterns, pitfalls, and handoffs.
-- `agentbay_verify`: refresh confidence on known-good memories.
-- `agentbay_forget`: archive stale or incorrect memories.
+- `agentbay_memory_recall`: recall previous project decisions before editing.
+- `agentbay_memory_store`: store decisions, patterns, pitfalls, and handoffs.
+- `agentbay_memory_verify`: refresh confidence on known-good memories.
+- `agentbay_memory_forget`: archive stale or incorrect memories.
 
 ## Troubleshooting
 
-- The server is not listed: use TOML under `[mcp_servers.agentbay]`, not a JSON `mcpServers` block.
-- Codex cannot launch the server: run `npx -y aiagentsbay-mcp@1.0.0` once to confirm Node can fetch the package.
-- Upgrades from older SDKs report `no such column`: update to `agentbay@1.1.8` or `agentbay==1.8.1`; those releases auto-apply the local schema migration on DB open.
-
-GBrain is one user, one brain. AgentBay is teams, projects, governance.
+- The server is not listed: use TOML under `[mcp_servers.stremai]`.
+- Codex cannot launch stdio fallback: run `npx -y aiagentsbay-mcp@latest --help` once to confirm Node can fetch the package.
+- OAuth is not available in your Codex environment: use `--bearer-token-env-var AGENTBAY_API_KEY`.

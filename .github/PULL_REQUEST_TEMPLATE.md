@@ -6,9 +6,9 @@
 
 <!-- README / install recipes / examples / comparison pages / scorecard mirror / other. -->
 
-## Wedge check
+## Product check
 
-<!-- One line on how this preserves or strengthens AgentBay's teams/projects/governance positioning. If it's a single-user-only change that doesn't fit, say so explicitly. -->
+<!-- One line on how this preserves or strengthens StremAI's shared-memory-for-coding-agents positioning. If it is compatibility-only, say so explicitly. -->
 
 ## Verification
 

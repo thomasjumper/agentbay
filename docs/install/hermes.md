@@ -1,50 +1,49 @@
-# Hermes + AgentBay
+# Hermes + StremAI
 
-> Verification status: package and MCP launch verified locally. Live Hermes account verification is still pending human access.
+> Verification status: package and MCP launch verified locally. Live Hermes host verification still depends on account access.
 
-## 30-second install
-
-```bash
-npm install -g aiagentsbay-mcp@1.0.0
-cat >> cli-config.yaml <<'YAML'
-
-mcp_servers:
-  agentbay:
-    command: npx
-    args: ["-y", "aiagentsbay-mcp@1.0.0"]
-    env:
-      AGENTBAY_API_KEY: "ab_live_YOUR_KEY"
-YAML
-```
-
-Restart Hermes after saving `cli-config.yaml`.
-
-## Config example
+## Recommended config
 
 ```yaml
 mcp_servers:
-  agentbay:
-    command: npx
-    args: ["-y", "aiagentsbay-mcp@1.0.0"]
-    env:
-      AGENTBAY_API_KEY: "ab_live_YOUR_KEY"
+  stremai:
+    type: http
+    url: https://stremai.com/api/mcp
 ```
 
-Replace `ab_live_YOUR_KEY` with a live key from aiagentsbay.com.
+Restart Hermes after saving `cli-config.yaml`. If Hermes supports browser sign-in for remote MCP, approve the StremAI connection.
+
+## API-key fallback
+
+```yaml
+mcp_servers:
+  stremai:
+    type: http
+    url: https://stremai.com/api/mcp
+    headers:
+      Authorization: "Bearer ab_live_YOUR_KEY"
+```
+
+## Stdio fallback
+
+```yaml
+mcp_servers:
+  stremai:
+    command: npx
+    args: ["-y", "aiagentsbay-mcp@latest", "--api-key", "ab_live_YOUR_KEY"]
+```
+
+The `aiagentsbay-mcp` package name is legacy compatibility; use `stremai` as the server alias in new configs.
 
 ## What works now
 
-Tested surface: `aiagentsbay-mcp@1.0.0`, frozen for the 1.x line. Live Hermes host verification is pending.
-
-- `agentbay_recall`: available through the MCP server.
-- `agentbay_store`: available through the MCP server.
-- `agentbay_verify`: available through the MCP server.
-- `agentbay_forget`: available through the MCP server.
+- `agentbay_memory_recall`: available through the MCP server.
+- `agentbay_memory_store`: available through the MCP server.
+- `agentbay_memory_verify`: available through the MCP server.
+- `agentbay_memory_forget`: available through the MCP server.
 
 ## Troubleshooting
 
-- Hermes does not show AgentBay tools: restart Hermes after editing the MCP config and confirm the server name is `agentbay`.
-- The server exits immediately: run `npx -y aiagentsbay-mcp@1.0.0` in a terminal to confirm Node can launch the package.
-- Upgrades from older SDKs report `no such column`: update to `agentbay@1.1.8` or `agentbay==1.8.1`; those releases auto-apply the local schema migration on DB open.
-
-GBrain is one user, one brain. AgentBay is teams, projects, governance.
+- Hermes does not show StremAI tools: restart Hermes after editing the MCP config and confirm the server name is `stremai`.
+- The stdio server exits immediately: run `npx -y aiagentsbay-mcp@latest --help` in a terminal to confirm Node can launch the package.
+- OAuth is not supported by your Hermes build: use the API-key fallback.

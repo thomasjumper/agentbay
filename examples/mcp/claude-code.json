@@ -1,12 +1,8 @@
 {
   "mcpServers": {
-    "agentbay": {
-      "type": "stdio",
-      "command": "npx",
-      "args": ["-y", "aiagentsbay-mcp@1.0.0"],
-      "env": {
-        "AGENTBAY_API_KEY": "ab_live_YOUR_KEY"
-      }
+    "stremai": {
+      "type": "http",
+      "url": "https://stremai.com/api/mcp"
     }
   }
 }

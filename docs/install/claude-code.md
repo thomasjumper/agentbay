@@ -1,59 +1,68 @@
-# Claude Code + AgentBay
+# Claude Code + StremAI
 
-## 30-second install
+## Recommended install
 
 ```bash
-npm install -g aiagentsbay-mcp@1.0.0
-cat > .mcp.json <<'JSON'
-{
-  "mcpServers": {
-    "agentbay": {
-      "type": "stdio",
-      "command": "npx",
-      "args": ["-y", "aiagentsbay-mcp@1.0.0"],
-      "env": {
-        "AGENTBAY_API_KEY": "ab_live_YOUR_KEY"
-      }
-    }
-  }
-}
-JSON
+claude mcp add --transport http stremai https://stremai.com/api/mcp --scope user
 ```
 
-Restart Claude Code from the project directory after saving `.mcp.json`.
+Approve the browser sign-in when Claude Code opens it. `--scope user` makes the connection available across projects, not only the current directory.
 
-## Config example
+## Manual MCP config
 
 ```json
 {
   "mcpServers": {
-    "agentbay": {
-      "type": "stdio",
-      "command": "npx",
-      "args": ["-y", "aiagentsbay-mcp@1.0.0"],
-      "env": {
-        "AGENTBAY_API_KEY": "ab_live_YOUR_KEY"
+    "stremai": {
+      "type": "http",
+      "url": "https://stremai.com/api/mcp"
+    }
+  }
+}
+```
+
+## API-key fallback
+
+Use this for CI, scripts, or clients that cannot complete OAuth/browser sign-in:
+
+```json
+{
+  "mcpServers": {
+    "stremai": {
+      "type": "http",
+      "url": "https://stremai.com/api/mcp",
+      "headers": {
+        "Authorization": "Bearer ab_live_YOUR_KEY"
       }
     }
   }
 }
 ```
 
-Replace `ab_live_YOUR_KEY` with a live key from aiagentsbay.com.
+## Stdio fallback
+
+```json
+{
+  "mcpServers": {
+    "stremai": {
+      "command": "npx",
+      "args": ["-y", "aiagentsbay-mcp@latest", "--api-key", "ab_live_YOUR_KEY"]
+    }
+  }
+}
+```
+
+The `aiagentsbay-mcp` package name is legacy compatibility; use `stremai` as the server alias in new configs.
 
 ## What works now
 
-Tested surface: `aiagentsbay-mcp@1.0.0`, frozen for the 1.x line.
-
-- `agentbay_recall`: recall project memory from Claude Code.
-- `agentbay_store`: store durable project knowledge.
-- `agentbay_verify`: mark a memory as still accurate.
-- `agentbay_forget`: archive stale or incorrect memory.
+- `agentbay_memory_recall`: recall relevant project memory before work.
+- `agentbay_memory_store`: store decisions, patterns, pitfalls, and handoffs.
+- `agentbay_memory_verify`: refresh confidence on known-good memories.
+- `agentbay_memory_forget`: archive stale or incorrect memories.
 
 ## Troubleshooting
 
-- Claude Code does not show AgentBay tools: restart Claude Code from the directory that contains `.mcp.json`.
-- `npx` is not found: install Node.js, then run `node --version` and `npm --version` from the same shell that launches Claude Code.
-- Upgrades from older SDKs report `no such column`: update to `agentbay@1.1.8` or `agentbay==1.8.1`; those releases auto-apply the local schema migration on DB open.
-
-GBrain is one user, one brain. AgentBay is teams, projects, governance.
+- Claude Code does not show StremAI tools: restart Claude Code after adding the MCP server.
+- The connection only works in one folder: re-add the server with `--scope user`.
+- OAuth is not supported by your client: use the API-key fallback.

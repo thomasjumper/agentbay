@@ -1,9 +1,9 @@
 /**
- * First AgentBay recall with the TypeScript SDK.
+ * First StremAI recall with the TypeScript SDK.
  *
- * Verified on 2026-05-16 in a clean npm project:
+ * Verified in a clean npm project:
  *
- *   npm install agentbay@1.1.8 tsx
+ *   npm install @tmjumper/stremai tsx
  *   AGENTBAY_API_KEY=ab_live_... AGENTBAY_PROJECT_ID=proj_... npx tsx examples/typescript/first_recall.ts
  *
  * Expected output:
@@ -12,16 +12,16 @@
  *   recall: ok
  *   cleanup: ok
  *
- * Note: agentbay@1.1.8 can store through the SDK. This example uses the
+ * Note: @tmjumper/stremai can store through the SDK. This example uses the
  * documented REST recall endpoint for the read path because the packaged
  * TypeScript recall helper is being patched to match the deployed API.
  */
 
-import { AgentBay } from "agentbay";
+import { StremAI } from "@tmjumper/stremai";
 
 const apiKey = process.env.AGENTBAY_API_KEY;
 const projectId = process.env.AGENTBAY_PROJECT_ID;
-const baseUrl = process.env.AGENTBAY_BASE_URL ?? "https://www.aiagentsbay.com";
+const baseUrl = process.env.AGENTBAY_BASE_URL ?? "https://stremai.com";
 
 if (!apiKey) {
   throw new Error("Set AGENTBAY_API_KEY before running this example.");
@@ -31,8 +31,8 @@ if (!projectId) {
   throw new Error("Set AGENTBAY_PROJECT_ID before running this example.");
 }
 
-const brain = new AgentBay({ projectId });
-const marker = `agentbay-typescript-example-${Date.now()}`;
+const brain = new StremAI({ projectId });
+const marker = `stremai-typescript-example-${Date.now()}`;
 
 type StoreResult = {
   id?: string;
