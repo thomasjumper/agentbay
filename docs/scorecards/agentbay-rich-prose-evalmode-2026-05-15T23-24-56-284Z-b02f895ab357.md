@@ -1,17 +1,18 @@
 # AgentBay Eval Scorecard — agentbay-rich-prose
-Generated: 2026-05-14T22:02:14.012Z
-Commit: 61783239ba552a07909e31ea6595208a4165ba53
+Generated: 2026-05-15T23:24:56.284Z
+Commit: b02f895ab3572cfbfa2b81bd528daa9b35d2634e
 Corpus: AgentBay-native rich-prose evaluation corpus with coding-agent memory, project, team, and governance scenarios.
 Entries: 200
 Queries: 100
 Embedding model: voyage-3-lite
+Eval mode: yes
 Hardware: darwin arm64 | Apple M2 Pro | 16GB RAM
 ## Results
 | Variant | P@1 | P@5 | P@10 | R@5 | R@10 | MRR | Top-1 Stability | p50 Latency | p95 Latency |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| Full hybrid | 5.0% | 5.8% | 4.8% | 9.7% | 16.0% | 0.137 | 100.0% | 341.0ms | 875.0ms |
-| Graph disabled | 6.0% | 5.4% | 4.8% | 9.0% | 16.0% | 0.147 | 100.0% | 355.0ms | 515.0ms |
-| Vector only | 6.0% | 5.8% | 4.7% | 9.7% | 15.7% | 0.147 | 100.0% | 345.0ms | 398.0ms |
+| Full hybrid | 6.0% | 5.8% | 4.8% | 9.7% | 16.0% | 0.144 | 100.0% | 310.0ms | 387.0ms |
+| Graph disabled | 6.0% | 5.8% | 4.7% | 9.7% | 15.7% | 0.142 | 100.0% | 306.0ms | 329.0ms |
+| Vector only | 6.0% | 5.8% | 4.7% | 9.7% | 15.7% | 0.147 | 100.0% | 306.0ms | 406.0ms |
 
 ## Comparison
 
