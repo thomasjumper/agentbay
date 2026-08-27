@@ -8,6 +8,14 @@ Memory is user-controlled: entries are human-readable, attributed to the agent t
 
 [![PyPI](https://img.shields.io/pypi/v/stremai.svg)](https://pypi.org/project/stremai/) [![npm](https://img.shields.io/npm/v/%40tmjumper%2Fstremai.svg?label=npm)](https://www.npmjs.com/package/@tmjumper/stremai) [![MCP](https://img.shields.io/npm/v/aiagentsbay-mcp.svg?label=mcp)](https://www.npmjs.com/package/aiagentsbay-mcp) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
+## Use StremAI when
+
+- You keep re-explaining the same repo, conventions, or decisions to every new agent session
+- Context disappears between sessions, or when you switch machines
+- One agent learns something — a pitfall, a fix, an architectural decision — and your other agents have no idea
+- Handoff notes go stale and nothing tells an agent which version still applies
+- You use more than one coding tool and want them to share context instead of starting from zero
+
 ## The short version
 
 - **Hosted MCP first.** Connect `https://stremai.com/api/mcp` with OAuth/browser sign-in where your MCP client supports it.
